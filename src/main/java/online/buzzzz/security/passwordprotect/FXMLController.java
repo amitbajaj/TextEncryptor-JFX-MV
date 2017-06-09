@@ -36,32 +36,32 @@ import javafx.beans.property.StringProperty;
 
 public class FXMLController implements Initializable {
     
-  private static final String APPLICATION_NAME = "Password Protect";
-  private static final String FILE_NAME = "TextEncryptor";
-  private static final String MIME_TYPE = "text/plain";
-  private static final String FIELD_LIST = "files(id, name, trashed, mimeType)";
+  private final String APPLICATION_NAME = "Password Protect";
+  private final String FILE_NAME = "TextEncryptor";
+  private final String MIME_TYPE = "text/plain";
+  private final String FIELD_LIST = "files(id, name, trashed, mimeType)";
 
   /** Directory to store user credentials. */
-  private static final java.io.File DATA_STORE_DIR =
+  private final java.io.File DATA_STORE_DIR =
       new java.io.File(System.getProperty("user.home"), ".store/password_protect");
 
   /**
    * Global instance of the {@link DataStoreFactory}. The best practice is to make it a single
    * globally shared instance across your application.
    */
-  private static FileDataStoreFactory dataStoreFactory;
+  private FileDataStoreFactory dataStoreFactory;
 
   /** Global instance of the HTTP transport. */
-  private static HttpTransport httpTransport;
+  private HttpTransport httpTransport;
 
   /** Global instance of the JSON factory. */
-  private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
+  private final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 
   /** Global Drive API client. */
-  private static Drive drive;
+  private Drive drive;
 
   /** Authorizes the installed application to access user's protected data. */
-  private static Credential authorize() throws Exception {
+  private Credential authorize() throws Exception {
     // load client secrets
     GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY,
         new InputStreamReader(FXMLController.class.getResourceAsStream("/client_secrets.json")));
@@ -80,6 +80,7 @@ public class FXMLController implements Initializable {
   private TextArea source;
   @FXML
   private Label status;
+  
   @FXML
   private void doEncrypt(ActionEvent event){
       source.setText(AESCrypto.encrypt(pass.getText(), source.getText()));
