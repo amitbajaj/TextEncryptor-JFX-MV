@@ -36,7 +36,7 @@ import javafx.beans.property.StringProperty;
 
 public class FXMLController implements Initializable {
     
-  private final String APPLICATION_NAME = "Password Protect";
+  private final String APPLICATION_NAME = "Protect Password";
   private final String FILE_NAME = "TextEncryptor";
   private final String MIME_TYPE = "text/plain";
   private final String FIELD_LIST = "files(id, name, trashed, mimeType)";
